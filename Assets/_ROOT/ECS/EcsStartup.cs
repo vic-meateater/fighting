@@ -1,19 +1,22 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
-namespace Client {
+namespace Fighting {
     sealed class EcsStartup : MonoBehaviour {
+
+        [SerializeField] SharedData _sharedData;
+        
         EcsWorld _world;        
         IEcsSystems _systems;
 
         void Start () {
             _world = new EcsWorld ();
-            _systems = new EcsSystems (_world);
+            _systems = new EcsSystems (_world, _sharedData);
             _systems
-                // register your systems here, for example:
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
-                
+                .Add(new PlayerInitSystem())
+                .Add(new InputRunSystem())
+                .Add(new MovementRunSystem())
+
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
 #if UNITY_EDITOR
