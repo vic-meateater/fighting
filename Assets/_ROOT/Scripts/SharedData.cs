@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Fighting
 {
@@ -6,5 +7,6 @@ namespace Fighting
     {
         public PlayerConfigSO PlayerConfig;
         public GameObject SpawnedPlayer;
+        public InputActionAsset inputActionAsset;
     }
 }
