@@ -7,6 +7,6 @@ namespace Fighting
     {
         public PlayerConfigSO PlayerConfig;
         public GameObject SpawnedPlayer;
-        public InputActionAsset inputActionAsset;
+        public InputActionAsset InputActionAsset;
     }
 }

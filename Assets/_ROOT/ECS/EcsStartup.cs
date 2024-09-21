@@ -14,8 +14,11 @@ namespace Fighting {
             _systems = new EcsSystems (_world, _sharedData);
             _systems
                 .Add(new PlayerInitSystem())
+                .Add(new InputProcessingInitRunSystem())
                 .Add(new InputRunSystem())
                 .Add(new MovementRunSystem())
+                .Add(new PlayerActionRunSystem())
+                
 
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")

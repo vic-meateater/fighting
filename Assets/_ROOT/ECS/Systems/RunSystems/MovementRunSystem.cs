@@ -1,6 +1,9 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
+/// <summary>
+/// This system is responsible for move player
+/// </summary>
 namespace Fighting {
     sealed class MovementRunSystem : IEcsRunSystem
     {

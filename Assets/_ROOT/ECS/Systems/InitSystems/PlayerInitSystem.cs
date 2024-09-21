@@ -1,6 +1,9 @@
 using Leopotam.EcsLite;
 using UnityEngine;
 
+/// <summary>
+/// This system is used to initialize and spwan the player
+/// </summary>
 namespace Fighting {
     sealed class PlayerInitSystem : IEcsInitSystem {
         public void Init (IEcsSystems systems) {
@@ -12,6 +15,9 @@ namespace Fighting {
 
             var directionPool = world.GetPool<DirectionComponent>();
             directionPool.Add(playerEntity);
+
+            var playerActionPool = world.GetPool<PlayerActionComponent>();
+            playerActionPool.Add(playerEntity);
 
             var speedPool = world.GetPool<SpeedComponent>();
             speedPool.Add(playerEntity);
