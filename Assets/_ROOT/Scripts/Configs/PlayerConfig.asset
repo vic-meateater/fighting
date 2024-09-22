@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bffa2addd2bb734ca2a04996919f2fe, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1897559126900323484, guid: 816af064203d6d34d801a9f3c83fdbfe, type: 3}
+  Prefab: {fileID: 1812033586386340, guid: 0361e759f187eb34986ec29b287fd1cb, type: 3}
   SpawnPoint: {fileID: 8160147367551025568, guid: 31852e943574b7a4cbdbe21bf598f22c,
     type: 3}
   Speed: 3
