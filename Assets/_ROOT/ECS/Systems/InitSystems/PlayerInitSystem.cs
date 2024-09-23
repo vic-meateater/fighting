@@ -13,11 +13,18 @@ namespace Fighting {
             
             var playerEntity = world.NewEntity();
 
+            var playerPool = world.GetPool<PlayerTagComponent>();
+            playerPool.Add(playerEntity);
+
             var directionPool = world.GetPool<DirectionComponent>();
             directionPool.Add(playerEntity);
 
             var playerActionPool = world.GetPool<PlayerActionComponent>();
             playerActionPool.Add(playerEntity);
+
+            var animatorPool = world.GetPool<AnimatorComponent>();
+            animatorPool.Add(playerEntity);
+            ref var animatorComponent = ref animatorPool.Get(playerEntity);
 
             var speedPool = world.GetPool<SpeedComponent>();
             speedPool.Add(playerEntity);
@@ -35,6 +42,7 @@ namespace Fighting {
             sharedData.SpawnedPlayer = playerGo;
             speedComponent.Speed = sharedData.PlayerConfig.Speed;
             positionComponent.Position = playerGo.transform.position;
+            animatorComponent.Animator = playerGo.GetComponent<Animator>();
         }
     }
 }

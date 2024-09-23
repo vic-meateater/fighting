@@ -11,18 +11,29 @@ namespace Fighting {
         {
             var world = systems.GetWorld();
             var sharedData = systems.GetShared<SharedData>();
-            var filter = world.Filter<PositionComponent>().Inc<DirectionComponent>().Inc<SpeedComponent>().End();
+            var filter = world.Filter<PositionComponent>()
+                                      .Inc<DirectionComponent>()
+                                      .Inc<SpeedComponent>()
+                                      .Inc<PlayerActionComponent>()
+                                      .End();
 
             var posPool = world.GetPool<PositionComponent>();
             var dirPool = world.GetPool<DirectionComponent>();
             var speedPool = world.GetPool<SpeedComponent>();
+            var actionPool = world.GetPool<PlayerActionComponent>();
 
             foreach (var entity in filter)
             {
                 ref var position = ref posPool.Get(entity);
                 ref var direction = ref dirPool.Get(entity);
                 ref var speed = ref speedPool.Get(entity);
+                ref var playerAction = ref actionPool.Get(entity);
+
+                // Проверка на блокировку управления
+                if (playerAction.IsControlBlocked)               
+                    continue;
                 
+
                 var playerSpeed = speed.Speed;
 
                 // Перемещение персонажа

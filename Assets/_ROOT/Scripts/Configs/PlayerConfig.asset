@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 1812033586386340, guid: 0361e759f187eb34986ec29b287fd1cb, type: 3}
   SpawnPoint: {fileID: 8160147367551025568, guid: 31852e943574b7a4cbdbe21bf598f22c,
     type: 3}
-  Speed: 3
+  Speed: 2

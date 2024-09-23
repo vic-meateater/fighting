@@ -32,13 +32,22 @@ namespace Fighting {
         {
             var world = systems.GetWorld();
 
-            var filter = world.Filter<DirectionComponent>().Inc<SpeedComponent>().Inc<PlayerActionComponent>().End();
+            var filter = world.Filter<DirectionComponent>()
+                                        .Inc<SpeedComponent>()
+                                        .Inc<PlayerActionComponent>()
+                                        .Inc<PlayerTagComponent>().End();
+
             var dirPool = world.GetPool<DirectionComponent>();
+            var playerActionPool = world.GetPool<PlayerActionComponent>();
 
             foreach (var entity in filter)
             {
-                ref var direction = ref dirPool.Get(entity);
+                ref var playerAction = ref playerActionPool.Get(entity);
+                if (playerAction.IsControlBlocked) 
+                    continue;
 
+                ref var direction = ref dirPool.Get(entity);
+                
                 Vector2 moveInput = moveAction.ReadValue<Vector2>(); // Чтение значений для осей X и Y
                 direction.Direction = new Vector3(moveInput.x, 0, moveInput.y).normalized;
             }

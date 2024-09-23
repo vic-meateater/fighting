@@ -61,6 +61,14 @@ namespace Fighting {
                 {
                     actionComponent.ActionKeyC = true;
                 }
+
+                //if (actionComponent.ActionKeyA || actionComponent.ActionKeyB || actionComponent.ActionKeyC)
+                //{
+                //    // Это будет предотвращать повторное использование значения
+                //    actionComponent.ActionKeyA = false;
+                //    actionComponent.ActionKeyB = false;
+                //    actionComponent.ActionKeyC = false;
+                //}
             }
         }
     }

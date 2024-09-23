@@ -18,7 +18,8 @@ namespace Fighting {
                 .Add(new InputRunSystem())
                 .Add(new MovementRunSystem())
                 .Add(new PlayerActionRunSystem())
-                
+                .Add(new PlayerAnimationRunSystem())
+
 
                 // register additional worlds here, for example:
                 // .AddWorld (new EcsWorld (), "events")
