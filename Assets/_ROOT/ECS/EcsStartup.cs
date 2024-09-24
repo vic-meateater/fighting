@@ -15,10 +15,10 @@ namespace Fighting {
             _systems
                 .Add(new PlayerInitSystem())
                 .Add(new InputProcessingInitRunSystem())
-                .Add(new InputRunSystem())
-                .Add(new MovementRunSystem())
                 .Add(new PlayerActionRunSystem())
+                .Add(new InputRunSystem())
                 .Add(new PlayerAnimationRunSystem())
+                .Add(new MovementRunSystem())
 
 
                 // register additional worlds here, for example:
