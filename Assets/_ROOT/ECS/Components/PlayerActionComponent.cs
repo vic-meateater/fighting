@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Fighting {
     struct PlayerActionComponent 
     {
@@ -5,5 +7,9 @@ namespace Fighting {
         public bool ActionKeyB;
         public bool ActionKeyC;
         public bool IsControlBlocked;
+        public GameObject LeftArm;
+        public GameObject RightArm;
+        public GameObject LeftLeg;
+        public GameObject RightLeg;
     }
 }

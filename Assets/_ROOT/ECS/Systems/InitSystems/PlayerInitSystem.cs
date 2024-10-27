@@ -21,6 +21,7 @@ namespace Fighting {
 
             var playerActionPool = world.GetPool<PlayerActionComponent>();
             playerActionPool.Add(playerEntity);
+            ref var playerAction = ref playerActionPool.Get(playerEntity);
 
             var animatorPool = world.GetPool<AnimatorComponent>();
             animatorPool.Add(playerEntity);
@@ -33,16 +34,34 @@ namespace Fighting {
             var positionPool = world.GetPool<PositionComponent>();
             positionPool.Add(playerEntity);
             ref var positionComponent = ref positionPool.Get(playerEntity);
+            
+            var playerStatePool = world.GetPool<PlayerStateComponent>();
+            playerStatePool.Add(playerEntity);
+            ref var playerState = ref playerStatePool.Get(playerEntity);
 
-            //Спавним игрока
-            var playerGo = GameObject.Instantiate(sharedData.PlayerConfig.Prefab, 
+            //Spawn player
+            var playerGO = GameObject.Instantiate(sharedData.PlayerConfig.Prefab, 
                                                     sharedData.PlayerConfig.SpawnPoint.transform.position, 
                                                     Quaternion.identity);
 
-            sharedData.SpawnedPlayer = playerGo;
+            sharedData.SpawnedPlayer = playerGO;
             speedComponent.Speed = sharedData.PlayerConfig.Speed;
-            positionComponent.Position = playerGo.transform.position;
-            animatorComponent.Animator = playerGo.GetComponent<Animator>();
+            positionComponent.Position = playerGO.transform.position;
+            animatorComponent.Animator = playerGO.GetComponentInChildren<Animator>();
+            playerState.State = PlayerState.Idle;
+            
+            //var entityLink = playerGO.AddComponent<EntityLink>();
+            sharedData.PlayerConfig.EntityID = playerEntity;
+            
+            var playerColliders = playerGO.GetComponent<PlayerDamageableColliders>();
+            playerAction.LeftArm = playerColliders.LeftArm;
+            playerAction.LeftArm.SetActive(false);
+            playerAction.RightArm = playerColliders.RightArm;
+            playerAction.RightArm.SetActive(false);
+            playerAction.LeftLeg = playerColliders.LeftLeg;
+            playerAction.LeftLeg.SetActive(false);
+            playerAction.RightLeg = playerColliders.RightLeg;
+            playerAction.RightLeg.SetActive(false);
         }
     }
 }

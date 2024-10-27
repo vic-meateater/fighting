@@ -1,11 +1,15 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Fighting {
     sealed class PlayerAnimationRunSystem : IEcsRunSystem {        
         public void Run (IEcsSystems systems) {
+            
             var world = systems.GetWorld();
-            var filter = world.Filter<DirectionComponent>().Inc<SpeedComponent>().Inc<AnimatorComponent>().End();
+            var filter = world.Filter<DirectionComponent>()
+                                 .Inc<SpeedComponent>()
+                                 .Inc<AnimatorComponent>()
+                                 .Inc<PlayerTagComponent>()
+                                 .End();
 
             var dirPool = world.GetPool<DirectionComponent>();
             var speedPool = world.GetPool<SpeedComponent>();
@@ -19,10 +23,9 @@ namespace Fighting {
 
                 var animator = animatorComponent.Animator;
 
-                if (animator != null)
-                {
+                if (animator) 
                     animator.SetFloat("Speed", speed.Speed * direction.Direction.magnitude);
-                }
+                
             }
         }
     }

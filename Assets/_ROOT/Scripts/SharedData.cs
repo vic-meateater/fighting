@@ -8,5 +8,6 @@ namespace Fighting
         public PlayerConfigSO PlayerConfig;
         public GameObject SpawnedPlayer;
         public InputActionAsset InputActionAsset;
+        public EnemyConfigSO[] EnemyConfigs;
     }
 }

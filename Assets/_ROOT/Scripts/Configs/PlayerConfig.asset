@@ -12,7 +12,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bffa2addd2bb734ca2a04996919f2fe, type: 3}
   m_Name: PlayerConfig
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1812033586386340, guid: 0361e759f187eb34986ec29b287fd1cb, type: 3}
+  Prefab: {fileID: 8183887440927371052, guid: 8cd1b6349ec2d114aa2b466d7aec613d, type: 3}
   SpawnPoint: {fileID: 8160147367551025568, guid: 31852e943574b7a4cbdbe21bf598f22c,
     type: 3}
   Speed: 2
+  Health: 100
+  EntityID: 0
+  SkillsConfig: {fileID: 11400000, guid: 7f4c43d1fa19e384f90674311cc1c4a5, type: 2}
+  SelectedSkillNames:
+  - Hook
+  - Kick
+  - AttackC_1
+  SelectedSkills:
+  - PlayerAnimatorTrigger: Hook
+    EnemyAnimatorTrigger: DamageA
+    DamageAmount: 10
+  - PlayerAnimatorTrigger: Kick
+    EnemyAnimatorTrigger: DamageB_Right
+    DamageAmount: 15
+  - PlayerAnimatorTrigger: AttackC_1
+    EnemyAnimatorTrigger: DamageC_1
+    DamageAmount: 30

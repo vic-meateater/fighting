@@ -30,9 +30,9 @@ namespace Fighting {
                 ref var playerAction = ref actionPool.Get(entity);
 
                 // Проверка на блокировку управления
-                if (playerAction.IsControlBlocked)               
+                if (playerAction.IsControlBlocked)
                     continue;
-                
+
 
                 var playerSpeed = speed.Speed;
 
