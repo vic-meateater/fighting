@@ -8,6 +8,7 @@ namespace Fighting
         TakingDamageB,
         TakingDamageC,
         StandUP,
+        Following,
         Die
     }
 }

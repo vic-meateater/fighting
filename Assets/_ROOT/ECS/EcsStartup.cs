@@ -22,6 +22,9 @@ namespace Fighting {
                 .Add(new EnemyAnimationRunSystem())
                 .Add(new MovementRunSystem())
                 .Add(new EnemyDamageRunSystem())
+                .Add(new EnemyFollowRunSystem())
+                .Add(new EnemySeparationRunSystem())
+                .Add(new EnemyDieRunSystem())
 
 
                 // register additional worlds here, for example:

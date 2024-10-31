@@ -1,5 +1,9 @@
+using Microlight.MicroBar;
+
 namespace Fighting {
     struct HPComponent {
-        public float Health;
+        public float CurrentHealth;
+        public float MaxHealth;
+        public MicroBar MicroBar;
     }
 }

@@ -1,4 +1,7 @@
+using System;
 using Leopotam.EcsLite;
+using Microlight.MicroBar;
+using UnityEngine;
 
 namespace Fighting {
     sealed class EnemyDamageRunSystem : IEcsRunSystem {        
@@ -6,12 +9,18 @@ namespace Fighting {
             
             var world = systems.GetWorld();
             var sharedData = systems.GetShared<SharedData>();
-            var filter = world.Filter<DamageComponent>().Inc<EnemyStateComponent>().Inc<HPComponent>().End();
+            var filter = world.Filter<DamageComponent>()
+                                 .Inc<EnemyStateComponent>()
+                                 .Inc<HPComponent>()
+                                 .Inc<GameObjectComponent>()
+                                 .End();
 
             var damagePool = world.GetPool<DamageComponent>();
             var statePool = world.GetPool<EnemyStateComponent>();
             var HPPool = world.GetPool<HPComponent>();
             var playerStatePool = world.GetPool<PlayerStateComponent>();
+            var goPool = world.GetPool<GameObjectComponent>();
+            
             ref var playerState = ref playerStatePool.Get(sharedData.PlayerConfig.EntityID);
 
             foreach (var entity in filter)
@@ -19,6 +28,7 @@ namespace Fighting {
                 ref var damage = ref damagePool.Get(entity);
                 ref var enemyState = ref statePool.Get(entity);
                 ref var enemyHP = ref HPPool.Get(entity);
+                ref var go = ref goPool.Get(entity);
 
                 if (damage.IsHit)
                 {
@@ -30,12 +40,36 @@ namespace Fighting {
                         PlayerState.AttackC => EnemyState.TakingDamageC,
                         _ => EnemyState.Idle
                     };
-                    
-                    //enemyState.State = EnemyState.TakingDamageA;
-                    // Сбрасываем флаг
+
                     damage.IsHit = false;
-                    enemyHP.Health -= damage.DamageAmount;
+                    enemyHP.CurrentHealth -= damage.DamageAmount;
+                    if (enemyHP.CurrentHealth > 0)
+                    {
+                        enemyHP.MicroBar.UpdateBar(enemyHP.CurrentHealth, UpdateAnim.Damage);
+                    }
+                    else
+                    {
+                        enemyHP.CurrentHealth = 0;
+                        enemyHP.MicroBar.UpdateBar(enemyHP.CurrentHealth, UpdateAnim.Damage);
+                        enemyState.State = EnemyState.Die;
+                        var enemyDiePool = world.GetPool<EnemyDieComponent>();
+                        enemyDiePool.Add(entity);
+                    }
+
                 }
+
+                // go.gameObject.GetComponent<BoxCollider>().enabled = enemyState.State switch
+                // {
+                //     EnemyState.Idle => true,
+                //     EnemyState.Attack => true,
+                //     EnemyState.TakingDamageA => false,
+                //     EnemyState.TakingDamageB => false,
+                //     EnemyState.TakingDamageC => false,
+                //     EnemyState.StandUP => true,
+                //     EnemyState.Following => true,
+                //     EnemyState.Die => false,
+                //     _ => throw new ArgumentOutOfRangeException()
+                // };
             }
         }
     }

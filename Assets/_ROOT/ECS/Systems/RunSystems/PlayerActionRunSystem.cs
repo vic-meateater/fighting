@@ -41,7 +41,7 @@ namespace Fighting {
                     var currentClipLenght = CurrentClipLength(animator.Animator);
 
                     //need refactor this
-                    if (animator.Animator.GetCurrentAnimatorStateInfo(0).IsName(IDLE_STATE_NAME) && !animator.Animator.IsInTransition(0))
+                    if (stateInfo.IsName(IDLE_STATE_NAME) && !animator.Animator.IsInTransition(0))
                     {
                         playerState.State = PlayerState.Idle;
                         playerAction.RightArm.SetActive(false);
