@@ -57,8 +57,7 @@ namespace Fighting {
                     {
                         enemyTransform.Rotation = Quaternion.LookRotation(directionToPlayer);
                     }
-
-                    // Синхронизация позиции с объектом Unity
+                    
                     var go = enemyGameObject.gameObject;
                     if (go)
                     {

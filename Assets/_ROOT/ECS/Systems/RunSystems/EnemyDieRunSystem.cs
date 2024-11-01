@@ -36,8 +36,6 @@ namespace Fighting {
                         
                         GameObject.Destroy(go.gameObject);
                     }
-                    
-                    // Удаление сущности из мира
                     world.DelEntity(entity);
                 }
             }

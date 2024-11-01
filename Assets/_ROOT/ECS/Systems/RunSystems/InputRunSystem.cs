@@ -13,8 +13,7 @@ namespace Fighting {
         public void Init(IEcsSystems systems)
         {
             var sharedData = systems.GetShared<SharedData>();
-
-            // Инициализация InputAction и включение его один раз при старте
+            
             var inputAsset = sharedData.InputActionAsset;
             moveAction = inputAsset.FindAction("Move");
 
@@ -48,7 +47,7 @@ namespace Fighting {
 
                 ref var direction = ref dirPool.Get(entity);
                 
-                Vector2 moveInput = moveAction.ReadValue<Vector2>(); // Чтение значений для осей X и Y
+                Vector2 moveInput = moveAction.ReadValue<Vector2>();
                 direction.Direction = new Vector3(moveInput.x, 0, moveInput.y).normalized;
             }
         }

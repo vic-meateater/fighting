@@ -90,17 +90,14 @@ namespace Fighting {
         {
             var currentClipInfo = animator.GetCurrentAnimatorClipInfo(0);
             
-            if (currentClipInfo.Length > 0) // ���������, ��� ���� �������� ����� �� ������� ����
+            if (currentClipInfo.Length > 0) 
             {
-                AnimationClip currentClip = currentClipInfo[0].clip; // ����� ������ (� ������ ������������) ����
-                float currentClipLength = currentClip.length; // ����� �������� �����
-
-                //Debug.Log($"����� �������� �������������� �����: {currentClipLength} ������");
+                AnimationClip currentClip = currentClipInfo[0].clip;
+                float currentClipLength = currentClip.length;
                 return currentClipLength;
             }
             else
             {
-                //Debug.LogWarning("��� ��������� ����� �� ������ ����!");
                 return 0;
             }
         }
